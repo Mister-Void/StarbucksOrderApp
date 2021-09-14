@@ -86,12 +86,6 @@ class DetailViewController: UIViewController {
             priceLabel.text = "\(String(menu[0].price)) 원"
         }
         
-        // 0개이면 카트에 담을 수 없음
-        if cntLabel.text == "0"{
-            cartButton.isEnabled = true
-        }else{
-            cartButton.isEnabled = false
-        }
         
         // Stepper 관련 코드
         stepper.wraps = true
@@ -99,11 +93,21 @@ class DetailViewController: UIViewController {
         stepper.maximumValue = 100
         
     }
-    
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        // 뷰가 처음 시작할 때는 무조건 0개이므로 카트에 담을 수 없음
+        cartButton.isEnabled = false
+    }
     @IBAction func stepperValueChanged(sender: UIStepper)
     {
         cntLabel.text = Int(sender.value).description
+        
+        // 0개이면 카트에 담을 수 없음
+        if cntLabel.text == "0"{
+            cartButton.isEnabled = false
+        }else{
+            cartButton.isEnabled = true
+        }
     }
     
     @IBAction func AddToCart(_ sender: Any) {
@@ -115,10 +119,14 @@ class DetailViewController: UIViewController {
         cart.menuArray.append(nameLabel.text!)
         cart.countArray?.append(Int(cnt!)!)
         cart.totalPriceArray?.append(Int(cnt!)! * Int(price)!)
-        print(cart.menuArray[0])
-        print(cart.countArray![0])
-        print(cart.totalPriceArray![0])
+        
+        // 현재 카트 상황
+        print(cart.menuArray)
+        print(cart.countArray)
+        print(cart.totalPriceArray)
+
         backToCart(cartButton)
+        
     }
 
     @objc func backToCart(_:UIButton){
