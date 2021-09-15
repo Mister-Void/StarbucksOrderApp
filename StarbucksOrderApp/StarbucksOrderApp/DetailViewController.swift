@@ -16,13 +16,7 @@ class DetailViewController: UIViewController {
         let price: Int
         var cnt: Int
     }
-    
-    struct item {
-        let name: String
-        let cnt: Int
-        let price: Int
-    }
-    
+
     var menu: Array = [menuModel(name: "아이스 아메리카노", engName: "Iced Americano", caption: "진한 에스프레소에 시원한 정수물과 얼음을 더하여 스타벅스의 깔끔하고 강렬한 에스프레소를 가장 부드럽고 시원하게 즐길 수 있는 커피", price: 4100, cnt: 0),
                 menuModel(name: "아이스 카페라떼", engName: "Iced Caffe Latte", caption: "풍부하고 진한 농도의 에스프레소가 시원한 우유와 얼음을 만나 고소함과 시원함을 즐길 수 있는 대표적인 커피 라떼", price: 4600, cnt: 0),
                 menuModel(name: "카페 아메리카노", engName: "Caffe Americano", caption: "진한 에스프레소와 뜨거운 물을 섞어 스타벅스의 깔끔하고 강렬한 에스프레소를 가장 부드럽게 잘 느낄 수 있는 커피", price: 4100, cnt: 0),
@@ -38,54 +32,74 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
-    var currentModel:Int = 0
-    
+    var modifiedModel:Int = 0 // 현재 선택 model(수정 ver)
+    var newModel: Int = 0 // 현재 선택 model(new ver)
+    var thisismodify:Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         cartButton.layer.borderColor = UIColor(red:3/255, green:102/255, blue:53/255, alpha: 1).cgColor
         cartButton.layer.borderWidth = 1.0
         cartButton.layer.cornerRadius = 10
         
+        let cart = CART.shared
+
         // UI 채우기
-        switch currentModel {
-        case 0:
-            img.image = UIImage(named: "1_item")
-            nameLabel.text = menu[0].name
-            engNameLabel.text = menu[0].engName
-            captionLabel.text = menu[0].caption
-            priceLabel.text = "\(String(menu[0].price)) 원"
-        case 1:
-            img.image = UIImage(named: "2_item")
-            nameLabel.text = menu[1].name
-            engNameLabel.text = menu[1].engName
-            captionLabel.text = menu[1].caption
-            priceLabel.text = "\(String(menu[1].price)) 원"
-        case 2:
-            img.image = UIImage(named: "3_item")
-            nameLabel.text = menu[2].name
-            engNameLabel.text = menu[2].engName
-            captionLabel.text = menu[2].caption
-            priceLabel.text = "\(String(menu[2].price)) 원"
-        case 3:
-            img.image = UIImage(named: "4_item")
-            nameLabel.text = menu[3].name
-            engNameLabel.text = menu[3].engName
-            captionLabel.text = menu[3].caption
-            priceLabel.text = "\(String(menu[3].price)) 원"
-        case 4:
-            img.image = UIImage(named: "5_item")
-            nameLabel.text = menu[4].name
-            engNameLabel.text = menu[4].engName
-            captionLabel.text = menu[4].caption
-            priceLabel.text = "\(String(menu[4].price)) 원"
-        default:
-            img.image = UIImage(named: "1_item")
-            nameLabel.text = menu[0].name
-            engNameLabel.text = menu[0].engName
-            captionLabel.text = menu[0].caption
-            priceLabel.text = "\(String(menu[0].price)) 원"
+        if !thisismodify{
+            switch newModel {
+            case 0:
+                img.image = UIImage(named: "1_item")
+                nameLabel.text = menu[0].name
+                engNameLabel.text = menu[0].engName
+                captionLabel.text = menu[0].caption
+                priceLabel.text = "\(String(menu[0].price)) 원"
+            case 1:
+                img.image = UIImage(named: "2_item")
+                nameLabel.text = menu[1].name
+                engNameLabel.text = menu[1].engName
+                captionLabel.text = menu[1].caption
+                priceLabel.text = "\(String(menu[1].price)) 원"
+            case 2:
+                img.image = UIImage(named: "3_item")
+                nameLabel.text = menu[2].name
+                engNameLabel.text = menu[2].engName
+                captionLabel.text = menu[2].caption
+                priceLabel.text = "\(String(menu[2].price)) 원"
+            case 3:
+                img.image = UIImage(named: "4_item")
+                nameLabel.text = menu[3].name
+                engNameLabel.text = menu[3].engName
+                captionLabel.text = menu[3].caption
+                priceLabel.text = "\(String(menu[3].price)) 원"
+            case 4:
+                img.image = UIImage(named: "5_item")
+                nameLabel.text = menu[4].name
+                engNameLabel.text = menu[4].engName
+                captionLabel.text = menu[4].caption
+                priceLabel.text = "\(String(menu[4].price)) 원"
+            default:
+                img.image = UIImage(named: "1_item")
+                nameLabel.text = menu[0].name
+                engNameLabel.text = menu[0].engName
+                captionLabel.text = menu[0].caption
+                priceLabel.text = "\(String(menu[0].price)) 원"
+            }
+        }else{
+            nameLabel.text = cart.menuArray[modifiedModel]
+            var i = 0
+            for _ in menu{
+                if nameLabel.text == menu[i].name{
+                    modifiedModel = i
+                }
+                i += 1
+            }
+            img.image = UIImage(named: "\(modifiedModel+1)_item")
+            nameLabel.text = menu[modifiedModel].name
+            engNameLabel.text = menu[modifiedModel].engName
+            captionLabel.text = menu[modifiedModel].caption
+            priceLabel.text = "\(String(menu[modifiedModel].price)) 원"
         }
-        
+
         
         // Stepper 관련 코드
         stepper.wraps = true
@@ -98,6 +112,7 @@ class DetailViewController: UIViewController {
         // 뷰가 처음 시작할 때는 무조건 0개이므로 카트에 담을 수 없음
         cartButton.isEnabled = false
     }
+    
     @IBAction func stepperValueChanged(sender: UIStepper)
     {
         cntLabel.text = Int(sender.value).description
@@ -111,22 +126,28 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func AddToCart(_ sender: Any) {
-//        print("AddToCart() Called")
         let cart = CART.shared
         let cnt = cntLabel.text
         let price = priceLabel.text!.components(separatedBy: CharacterSet.decimalDigits.inverted).joined(separator: "")
         
-        cart.menuArray.append(nameLabel.text!)
-        cart.countArray?.append(Int(cnt!)!)
-        cart.totalPriceArray?.append(Int(cnt!)! * Int(price)!)
+        if thisismodify{
+            let index = cart.menuArray.firstIndex(of: nameLabel.text!)
+            print(nameLabel.text as Any)
+            print(index as Any)
+            cart.countArray![index!] = Int(cnt!)!
+            cart.totalPriceArray![index!] = Int(cnt!)! * Int(price)!
+        }else{
+            cart.menuArray.append(nameLabel.text!)
+            cart.countArray?.append(Int(cnt!)!)
+            cart.totalPriceArray?.append(Int(cnt!)! * Int(price)!)
+        }
         
         // 현재 카트 상황
         print(cart.menuArray)
-        print(cart.countArray)
-        print(cart.totalPriceArray)
+        print(cart.countArray as Any)
+        print(cart.totalPriceArray as Any)
 
         backToCart(cartButton)
-        
     }
 
     @objc func backToCart(_:UIButton){

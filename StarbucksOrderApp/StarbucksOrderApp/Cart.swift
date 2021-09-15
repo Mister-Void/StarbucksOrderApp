@@ -12,4 +12,9 @@ class CART {
     var menuArray: [String] = []
     var countArray: [Int]? = []
     var totalPriceArray: [Int]? = []
+    
+    
+//    func getCount(completion: ([modifiedModel]) -> Void) {
+//        completion(self.items)
+//    }
 }
