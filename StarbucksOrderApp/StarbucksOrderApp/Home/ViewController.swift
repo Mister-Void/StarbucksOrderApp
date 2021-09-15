@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class ViewController: UIViewController {
     
@@ -14,9 +15,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad - VC")
         // Do any additional setup after loading the view.
         nameLabel.text = "\(info.username)님, 안녕하세요!"
         
+        // 앱 리뷰
+        var count = UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey)
+        count += 1
+        print(count)
+        UserDefaults.standard.set(count, forKey: UserDefaultsKeys.processCompletedCountKey)
+        if count == 1{
+            let twoSecondsFromNow = DispatchTime.now() + 1.0
+            DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) {
+                if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                    SKStoreReviewController.requestReview(in: scene)
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

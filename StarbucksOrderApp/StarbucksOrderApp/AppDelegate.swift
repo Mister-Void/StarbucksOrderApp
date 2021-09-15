@@ -6,14 +6,19 @@
 //
 
 import UIKit
+import StoreKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        print("application")
+        if UserDefaults.standard.integer(forKey: UserDefaultsKeys.processCompletedCountKey) >= 2{
+            UserDefaults.standard.set(0, forKey: UserDefaultsKeys.processCompletedCountKey)
+            print("Checks have been reset")
+        }
+
         return true
     }
 

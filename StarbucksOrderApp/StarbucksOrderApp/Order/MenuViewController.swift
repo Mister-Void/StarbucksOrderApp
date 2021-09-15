@@ -13,8 +13,6 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
 
-    var orderFinished = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         orderButton.layer.cornerRadius = 10
@@ -24,7 +22,6 @@ class MenuViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("viewWilAppear \(orderFinished)")
         self.navigationController?.isNavigationBarHidden = true
     }
 
