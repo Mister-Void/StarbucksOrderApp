@@ -26,7 +26,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starbuckslogotitle" translatesAutoresizingMaskIntoConstraints="NO" id="ubc-JH-1Kn">
                                                 <rect key="frame" x="0.0" y="0.0" width="223.33333333333334" height="51.666666666666664"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username님 안녕하세요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwm-5U-qP1">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username님, 안녕하세요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qwm-5U-qP1">
                                                 <rect key="frame" x="0.0" y="51.666666666666657" width="223.33333333333334" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="35" id="3mR-pj-nJ0"/>
@@ -437,6 +437,9 @@
                                                 <state key="normal" title="결제">
                                                     <color key="titleColor" red="0.94891041519999997" green="0.94907277820000002" blue="0.94890016320000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="clickToBuy:" destination="5C1-Ry-Epe" eventType="touchUpInside" id="Q7c-Cn-vzA"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -632,6 +635,45 @@
             </objects>
             <point key="canvasLocation" x="2875" y="627"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="aPI-Lh-VdZ">
+            <objects>
+                <viewController id="QqH-b3-eWm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TXc-6d-ksh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starbuckslogotitle" translatesAutoresizingMaskIntoConstraints="NO" id="kxH-Y9-WUz">
+                                <rect key="frame" x="20" y="44" width="301" height="82"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alg-2t-vBY">
+                                <rect key="frame" x="37" y="181" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="결제 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mO-h9-AwF">
+                                <rect key="frame" x="37" y="134" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="o3p-Fb-siN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kxH-Y9-WUz" firstAttribute="top" secondItem="o3p-Fb-siN" secondAttribute="top" id="8W2-WK-TQj"/>
+                            <constraint firstItem="kxH-Y9-WUz" firstAttribute="width" secondItem="kxH-Y9-WUz" secondAttribute="height" multiplier="301:82" id="Qgh-Ov-Px0"/>
+                            <constraint firstItem="kxH-Y9-WUz" firstAttribute="leading" secondItem="o3p-Fb-siN" secondAttribute="leading" constant="20" id="eRg-j0-2rQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tQH-Q9-5zi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3680.8000000000002" y="525.3694581280788"/>
+        </scene>
         <!--Order-->
         <scene sceneID="rDa-tz-Zbj">
             <objects>
@@ -654,7 +696,6 @@
         <!--Home-->
         <scene sceneID="AdD-UW-94o">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EP7-9U-hXr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IyU-9y-xNy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="7V6-xj-VIm"/>
                     <toolbarItems/>
@@ -667,6 +708,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Sav-eh-eRZ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EP7-9U-hXr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1102" y="-210"/>
         </scene>

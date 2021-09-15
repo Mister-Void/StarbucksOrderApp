@@ -9,18 +9,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let info = userInfo.shared
+    
     @IBOutlet weak var nameLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-
+        nameLabel.text = "\(info.username)님, 안녕하세요!"
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-
+        nameLabel.text = "\(info.username)님, 안녕하세요!"
     }
 
     

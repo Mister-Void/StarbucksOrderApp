@@ -200,7 +200,30 @@ class MenuViewController: UIViewController {
 
     }
     
-//MARK:- 새로운 menuModel 장바구니에 추가
+//MARK:- 결제
+    
+    @IBAction func clickToBuy(_ sender: Any) {
+        let cart = CART.shared
+        let info = userInfo.shared
+        let alert = UIAlertController(title: "결제", message: "결제 하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "취소", style: .default) { action in
+            print("취소")
+        })
+        alert.addAction(UIAlertAction(title: "확인", style: .default) { action in
+            print("결제")
+            cart.menuArray.removeAll()
+            cart.countArray?.removeAll()
+            cart.totalPriceArray?.removeAll()
+            let alert = UIAlertController(title: "성공", message: "\(info.username)님, 결제되었습니다!", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                
+            }
+            alert.addAction(okAction)
+            self.present(alert, animated: false, completion: nil)
+        })
+        self.present(alert, animated: true, completion: nil)
+    }
+    //MARK:- 새로운 menuModel 장바구니에 추가
     
     @IBAction func item1Clicked(_ sender: Any) {
         guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }

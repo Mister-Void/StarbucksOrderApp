@@ -47,6 +47,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A5597A326F2331D00817EBD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0AFFFB2C26ECC5B900A81A57 /* ViewController.swift */,
+				0AB8F4C926F1F2E0000C2117 /* ProfileViewController.swift */,
+				0A5597A126F22E3E00817EBD /* Info.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0A5597A426F2332E00817EBD /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				0AB8F4C526F09A62000C2117 /* Cart.swift */,
+				0A0CFA2726EE5B40009C14FC /* MenuViewController.swift */,
+				0A0CFA2926EE5F9C009C14FC /* DetailViewController.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
 		0AFFFB1C26ECC5B900A81A57 = {
 			isa = PBXGroup;
 			children = (
@@ -66,15 +86,11 @@
 		0AFFFB2726ECC5B900A81A57 /* StarbucksOrderApp */ = {
 			isa = PBXGroup;
 			children = (
+				0A5597A426F2332E00817EBD /* Order */,
+				0A5597A326F2331D00817EBD /* Home */,
 				0AFFFB2826ECC5B900A81A57 /* AppDelegate.swift */,
 				0AFFFB2A26ECC5B900A81A57 /* SceneDelegate.swift */,
-				0AFFFB2C26ECC5B900A81A57 /* ViewController.swift */,
 				0AFFFB2E26ECC5B900A81A57 /* Main.storyboard */,
-				0AB8F4C526F09A62000C2117 /* Cart.swift */,
-				0A0CFA2926EE5F9C009C14FC /* DetailViewController.swift */,
-				0A0CFA2726EE5B40009C14FC /* MenuViewController.swift */,
-				0AB8F4C926F1F2E0000C2117 /* ProfileViewController.swift */,
-				0A5597A126F22E3E00817EBD /* Info.swift */,
 				0AFFFB3126ECC5B900A81A57 /* Assets.xcassets */,
 				0AFFFB3326ECC5B900A81A57 /* LaunchScreen.storyboard */,
 				0AFFFB3626ECC5B900A81A57 /* Info.plist */,
