@@ -36,7 +36,12 @@ class ProfileViewController: UIViewController {
         
         if nameTextField.text == ""{
             print("again")
-            return
+            let alert = UIAlertController(title: "알림", message: "이름은 필수 항목입니다.", preferredStyle: UIAlertController.Style.alert)
+            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                return
+            }
+            alert.addAction(okAction)
+            present(alert, animated: false, completion: nil)
         }else{
             print("ok")
             info.username = nameTextField.text!

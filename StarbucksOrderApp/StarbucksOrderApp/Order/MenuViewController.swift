@@ -13,27 +13,40 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stackView: UIStackView!
 
+    var orderFinished = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         orderButton.layer.cornerRadius = 10
-        stackView.subviews.last!.tag = 1 // 버튼 tag 표시
-        
+        stackView.subviews.last!.tag = 1 // 버튼 tag 표시 -> 버튼은 사라지면 안됨
+        print("viewDidLoad")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("viewWilAppear \(orderFinished)")
         self.navigationController?.isNavigationBarHidden = true
-        
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let cart = CART.shared;
         if !cart.menuArray.isEmpty{
+            orderButton.isEnabled = true
+        }else{
+            orderButton.isEnabled = false
+        }
+        
+        if !cart.menuArray.isEmpty{
+            orderButton.isEnabled = true
             for (index, num) in cart.menuArray.enumerated() {
                 addEntry(menu: num, count: cart.countArray![index], total: cart.totalPriceArray![index])
             }
+        }else{
+            orderButton.isEnabled = false
         }
-
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
@@ -50,6 +63,8 @@ class MenuViewController: UIViewController {
             }
         }
     }
+    
+    
 //MARK:- 목록 추가
     func addEntry(menu : String?, count : Int?, total : Int?){
         // stack view에 있는 button을 가져옴
@@ -71,7 +86,7 @@ class MenuViewController: UIViewController {
         stackView.insertArrangedSubview(newEntryView, at: nextEntryIndex)
 
         // 0.2초 동안 추가된 뷰가 보이게 하면서 scrollview의 스크롤 이동
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.1) {
             newEntryView.isHidden = false
             self.scrollView.contentOffset = offset
 
@@ -80,7 +95,6 @@ class MenuViewController: UIViewController {
 
 //MARK:- 목록에 들어갈 Cell(수평 스택뷰) 생성
     private func createEntryView(menu : String?, count : Int?, total : Int?) -> UIView {
-
 
         let name = menu! // 음료명
         let cnt = "수량: \(String(count!))" // 수량
@@ -175,7 +189,12 @@ class MenuViewController: UIViewController {
             entryView.removeFromSuperview()
         })
         
-        
+        if !cart.menuArray.isEmpty{
+            orderButton.isEnabled = true
+        }else{
+            orderButton.isEnabled = false
+            print("isEmpty")
+        }
 
     }
     
@@ -214,15 +233,19 @@ class MenuViewController: UIViewController {
             cart.menuArray.removeAll()
             cart.countArray?.removeAll()
             cart.totalPriceArray?.removeAll()
-            let alert = UIAlertController(title: "성공", message: "\(info.username)님, 결제되었습니다!", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "성공", message: "\(info.username)님, 결제되었습니다! 앱이 종료됩니다.", preferredStyle: UIAlertController.Style.alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                
+                exit(0)
+
             }
             alert.addAction(okAction)
             self.present(alert, animated: false, completion: nil)
         })
         self.present(alert, animated: true, completion: nil)
+    
     }
+    
+    
     //MARK:- 새로운 menuModel 장바구니에 추가
     
     @IBAction func item1Clicked(_ sender: Any) {

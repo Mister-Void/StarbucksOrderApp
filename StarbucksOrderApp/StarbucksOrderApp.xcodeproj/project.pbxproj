@@ -50,9 +50,9 @@
 		0A5597A326F2331D00817EBD /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0A5597A126F22E3E00817EBD /* Info.swift */,
 				0AFFFB2C26ECC5B900A81A57 /* ViewController.swift */,
 				0AB8F4C926F1F2E0000C2117 /* ProfileViewController.swift */,
-				0A5597A126F22E3E00817EBD /* Info.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -86,8 +86,8 @@
 		0AFFFB2726ECC5B900A81A57 /* StarbucksOrderApp */ = {
 			isa = PBXGroup;
 			children = (
-				0A5597A426F2332E00817EBD /* Order */,
 				0A5597A326F2331D00817EBD /* Home */,
+				0A5597A426F2332E00817EBD /* Order */,
 				0AFFFB2826ECC5B900A81A57 /* AppDelegate.swift */,
 				0AFFFB2A26ECC5B900A81A57 /* SceneDelegate.swift */,
 				0AFFFB2E26ECC5B900A81A57 /* Main.storyboard */,

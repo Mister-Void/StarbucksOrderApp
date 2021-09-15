@@ -36,5 +36,5 @@ class ViewController: UIViewController {
         self.navigationController!.pushViewController(profileVC, animated: true)
     }
     
-}
 
+}
