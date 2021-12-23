@@ -2,17 +2,10 @@
 
 ### 1. CRUD (주문)
 - 싱글톤 활용
-- Create
-<img width="25%" src="https://user-images.githubusercontent.com/70887135/147216434-fcf5c8dc-21f9-46d5-8c3f-b7df2441f8a7.gif"/>
 
-- Update
-<img width="25%" src="https://user-images.githubusercontent.com/70887135/147216774-0be91246-b6b2-4b1b-a386-11c60e6e85aa.gif"/>
-
-- Read
-<img width="25%" src="https://user-images.githubusercontent.com/70887135/147216854-113ac6c0-b3ec-44cf-a676-69b9c8b9704f.png"/>
-
-- Delete
-<img width="25%" src="https://user-images.githubusercontent.com/70887135/147216923-03ed19bc-83d5-4d2a-9aeb-93ff42e65b03.gif"/>
+| Create | Update | Read | Delete |
+| :-: | :-: | :-: | :-: |
+| <img width="100%" src="https://user-images.githubusercontent.com/70887135/147216434-fcf5c8dc-21f9-46d5-8c3f-b7df2441f8a7.gif"/></b> | <img width="100%" src="https://user-images.githubusercontent.com/70887135/147216774-0be91246-b6b2-4b1b-a386-11c60e6e85aa.gif"/></b> | <img width="100%" src="https://user-images.githubusercontent.com/70887135/147219094-07ba75fa-f621-4992-a28c-b11f139317a0.gif"/></b> | <img width="100%" src="https://user-images.githubusercontent.com/70887135/147216923-03ed19bc-83d5-4d2a-9aeb-93ff42e65b03.gif"/></b> |
 
 
 ### 2. 결제
